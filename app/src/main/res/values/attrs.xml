@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleMenuLayout">
+        <attr name="children_max_scale" format="float" />
+        <attr name="children_min_scale" format="float" />
+        <attr name="children_auto_alignment" format="boolean" />
+        <attr name="triangle_bg_color" format="color" />
+        <attr name="circle_line_color" format="color" />
+        <attr name="circle_view_bg_color" format="color" />
+        <attr name="circle_view_single_mode" format="boolean" />
+    </declare-styleable>
+</resources>

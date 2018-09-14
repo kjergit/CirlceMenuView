@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="triang_color">#0F51EA</color>
+    <color name="rransparent">#00000000</color>
+    <color name="circle_view_bg">#33002857</color>
+
+    transparent
+</resources>
