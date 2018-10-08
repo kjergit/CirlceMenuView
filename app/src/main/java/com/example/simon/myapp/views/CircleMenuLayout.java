@@ -1,5 +1,6 @@
 package com.example.simon.myapp.views;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -75,6 +76,8 @@ public class CircleMenuLayout extends ViewGroup {
     private int triangBgColor;
     private int circleLineColor;
     private int viewBgColor;
+    int curPosition;
+    private int circleType;//default 0
 
     public void setAlignment(boolean alignment) {
         isAlignment = alignment;
@@ -291,6 +294,33 @@ public class CircleMenuLayout extends ViewGroup {
                 requestLayout();
             }
         });
+        mValueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (isAlignment) {
+                    int pos = getCurPosition() == mItemTexts.length ? 0 : getCurPosition();
+                    if (curPosition != pos) {
+                        curPosition = pos;
+                        mOnMenuItemClickListener.autoScrollBack(pos, isSingleMode, circleType);
+                    }
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
         mValueAnimator.start();
     }
 
@@ -403,7 +433,7 @@ public class CircleMenuLayout extends ViewGroup {
                     public void onClick(View v) {
                         if (mOnMenuItemClickListener != null) {
                             getDelayAngle(j);
-                            mOnMenuItemClickListener.itemClick(v, j, isSingleMode);
+                            mOnMenuItemClickListener.itemClick(v, j, isSingleMode, circleType);
                         }
                     }
                 });
@@ -432,7 +462,9 @@ public class CircleMenuLayout extends ViewGroup {
     }
 
     public interface OnMenuItemClickListener {
-        void itemClick(View view, int pos, boolean isSingle);
+        void itemClick(View view, int pos, boolean isSingle, int circleType);
+
+        void autoScrollBack(int pos, boolean isSingle, int circleType);
     }
 
     private OnMenuItemClickListener mOnMenuItemClickListener;
